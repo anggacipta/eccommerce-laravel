@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Ecommerce Laravel
+# Ecommerce Laravel
 
 ## English 
 This project is on progress. So if you wanna try it, I consider not doing that because that is still many bug and few section is not complete yet.
