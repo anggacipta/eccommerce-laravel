@@ -12,14 +12,16 @@
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('frontend/assets/imgs/theme/favicon.svg')}}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/plugins/animate.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/main.css?v=5.3')}}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+
+    {{--  Toaster  --}}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
 </head>
 
 <body>
-<!-- Modal -->
 
 <!-- Quick view -->
 @include('frontend.body.quickview')
@@ -29,14 +31,12 @@
 @include('frontend.body.header')
 <!-- End Header  -->
 
-
-
 <main class="main">
     @yield('main')
 </main>
 
 {{-- Footer --}}
-    @include('frontend.body.footer')
+@include('frontend.body.footer')
 {{-- End Footer --}}
 
 <!-- Preloader Start -->
@@ -72,6 +72,33 @@
 <!-- Template  JS -->
 <script src="{{asset('frontend/assets/js/main.js?v=5.3')}}"></script>
 <script src="{{asset('frontend/assets/js/shop.js?v=5.3')}}"></script>
+
+{{-- Toaster --}}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type','info') }}"
+    switch(type){
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+    }
+    @endif
+</script>
+
 </body>
 
 </html>

@@ -60,7 +60,7 @@ class UserController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect('/login')->with($notification);
+        return redirect()->route('login')->with($notification);
     }
 
     public function updatePasswordUser(Request $request)

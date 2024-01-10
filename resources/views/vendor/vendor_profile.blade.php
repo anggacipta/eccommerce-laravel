@@ -104,6 +104,32 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
+                                            <h6 class="mb-0">Vendor Join Date</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <select name="vendor_join" class="form-select mb-3"
+                                                    aria-label="Default select example">
+                                                <option selected="">Open this select Join Date</option>
+                                                @php
+                                                    $tahunSaatIni = date("Y");
+                                                    $tahunsaja = (int) $tahunSaatIni;
+                                                @endphp
+                                                @for($tahun = $tahunsaja; $tahun <= $tahunsaja + 5; $tahun++)
+                                                    <option value="{{ $tahun }}" {{ $tahun == $vendorData->vendor_join ? 'selected' : '' }}>{{ $tahun }}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Vendor Short Info</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <textarea name="vendor_short_info" id="" cols="40" rows="10">{{ $vendorData->vendor_short_info }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
                                             <h6 class="mb-0">Photo</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">

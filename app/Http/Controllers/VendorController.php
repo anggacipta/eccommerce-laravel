@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use Illuminate\Validation\Rules;
 
 class VendorController extends Controller
 {
     public function vendorDashboard(){
         return view('vendor.index');
+    }
+
+    public function vendorLogin()
+    {
+        return view('vendor.vendor_login');
     }
 
     public function vendorLogout(Request $request){
@@ -21,7 +30,12 @@ class VendorController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        $notification = array(
+            'message' => 'Vendor logout success',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('vendor.login')->with($notification);
     }
 
     public function vendorProfile(){
@@ -37,6 +51,8 @@ class VendorController extends Controller
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
+        $data->vendor_join = $request->vendor_join;
+        $data->vendor_short_info = $request->vendor_short_info;
         $photo = $data->photo;
         if($request->file('photo')) {
             $file = $request->file('photo');
@@ -83,4 +99,33 @@ class VendorController extends Controller
         return back()->with("status", "Password Changed Successfully");
     }
 
+    public function becomeVendor()
+    {
+        return view('auth.become_vendor');
+    }
+
+    public function vendorRegister(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::insert([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'vendor_join' => $request->vendor_join,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $notification = array(
+            'message' => 'Vendor Registered successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('vendor.login')->with($notification);
+    }
 }
