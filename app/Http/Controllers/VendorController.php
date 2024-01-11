@@ -119,6 +119,8 @@ class VendorController extends Controller
             'phone' => $request->phone,
             'vendor_join' => $request->vendor_join,
             'password' => Hash::make($request->password),
+            'role' => 'vendor',
+            'status' => 'inactive',
         ]);
 
         $notification = array(

@@ -81,6 +81,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/store/subcategory', 'storeSubCategory')->name('subcategory.store');
         Route::post('/update/subcategory', 'updateSubCategory')->name('update.subcategory');
     });
+
+    // Inactive and Active Vendor
+    Route::controller(AdminController::class)->group(function (){
+        Route::get('/inactive/vendor', 'inactiveVendor')->name('inactive.vendor');
+        Route::get('/active/vendor', 'activeVendor')->name('active.vendor');
+    });
 });
 
 
