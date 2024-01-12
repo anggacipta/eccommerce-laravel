@@ -60,14 +60,17 @@
 
         <li class="menu-label">UI Elements</li>
 
+        @php
+            $user = App\Models\User::where('status', 'inactive')->where('role', 'vendor')->count();
+        @endphp
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-user'></i>
+                <div class="parent-icon"><span class="alert-count-2">{{ $user }}</span><i class='bx bx-user'></i>
                 </div>
                 <div class="menu-title">Vendor Manage</div>
             </a>
             <ul>
-                <li> <a href="{{ route('inactive.vendor') }}"><i class="bx bx-right-arrow-alt"></i>Inactive Vendor</a>
+                <li><a href="{{ route('inactive.vendor') }}"><i class="bx bx-right-arrow-alt"></i><span class="alert-count-3">{{ $user }}</span>Inactive Vendor</a>
                 <li> <a href="{{ route('active.vendor') }}"><i class="bx bx-right-arrow-alt"></i>Active Vendor</a>
                 </li>
             </ul>

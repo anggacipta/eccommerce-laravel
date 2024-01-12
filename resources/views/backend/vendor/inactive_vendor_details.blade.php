@@ -99,7 +99,7 @@
                                             <h6 class="mb-0">Photo</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <img id="showImage" src="{{ !empty($inactive_vendor_details->photo) ? url('upload/admin_images/'.$inactive_vendor_details->photo):url('upload/no_image.jpg') }}" alt=""
+                                            <img id="showImage" src="{{ !empty($inactive_vendor_details->photo) ? url('upload/vendor_images/'.$inactive_vendor_details->photo):url('upload/no_image.jpg') }}" alt=""
                                                  class="rounded-circle avatar-sm img-thumbnail" height="100px" width="100px">
                                         </div>
                                     </div>
