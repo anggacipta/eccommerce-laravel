@@ -128,7 +128,7 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->route('active.vendor')->with($notification);
+        return redirect()->route('inactive.vendor')->with($notification);
     }
 
     public function inactiveVendorApprove(Request $request)
@@ -143,7 +143,7 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->route('inactive.vendor')->with($notification);
+        return redirect()->route('active.vendor')->with($notification);
     }
 
 }

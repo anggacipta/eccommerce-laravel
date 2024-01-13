@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/active/vendor/details/{id}', 'activeVendorDetails')->name('active.vendor.details');
         Route::post('/active/vendor/approve', 'activeVendorApprove')->name('active.vendor.approve');
         Route::post('/inactive/vendor/approve', 'inactiveVendorApprove')->name('inactive.vendor.approve');
+    });
+
+    // SubCategory Route
+    Route::controller(ProductController::class)->group(function (){
+        Route::get('/all/product', 'allProduct')->name('all.product');
+        Route::get('/add/product', 'addProduct')->name('add.product');
+//        Route::get('/edit/subcategory/{id}', 'editSubCategory')->name('edit.subcategory');
+//        Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
+//        Route::post('/store/subcategory', 'storeSubCategory')->name('subcategory.store');
+//        Route::post('/update/subcategory', 'updateSubCategory')->name('update.subcategory');
     });
 });
 
