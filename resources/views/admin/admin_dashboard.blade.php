@@ -240,6 +240,10 @@
 
 {{-- Image Upload --}}
 <script src="{{ asset('adminbackend/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js') }}"></script>
+<script src="{{ asset('adminbackend/assets/plugins/fancy-file-uploader/jquery.ui.widget.js') }}"></script>
+<script src="{{ asset('adminbackend/assets/plugins/fancy-file-uploader/jquery.fileupload.js') }}"></script>
+<script src="{{ asset('adminbackend/assets/plugins/fancy-file-uploader/jquery.iframe-transport.js') }}"></script>
+<script src="{{ asset('adminbackend/assets/plugins/fancy-file-uploader/jquery.fancy-fileupload.js') }}"></script>
 
 <script>
     $(document).ready(function () {

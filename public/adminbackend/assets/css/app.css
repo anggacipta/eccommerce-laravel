@@ -1938,6 +1938,10 @@ input.search-control-2::placeholder {
     background: #f62718
 }
 
+.hidden-img {
+    display: none;
+}
+
 .user-img {
 	width: 42px;
 	height: 42px;

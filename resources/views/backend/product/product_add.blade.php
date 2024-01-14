@@ -23,7 +23,7 @@
             <div class="card-body p-4">
                 <h5 class="card-title">Add New Product</h5>
                 <hr/>
-                <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data" id="myForm">
+                <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data" id="myForm">
                     @csrf
                     <div class="form-body mt-4">
                         <div class="row">
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="inputProductDescription" class="form-label">Multiple Image</label>
-                                        <input id="image-uploadify" type="file" name="multi_img[]" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+                                        <input id="image-uploadify" type="file" name="multi_img[]"  multiple>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +148,9 @@
                                         <hr>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-primary px-4">Save Product</button>
+                                                <button type="submit" id="Login" class="btn btn-primary px-4">Save Product</button>
+                                                <img src="https://media.tenor.com/J7nXdDCdmLcAAAAi/sky-spinning.gif" height="80" width="120" class="my-3 hidden-img">
+                                                <button type="button" class="btn btn-sm btn-danger hidden-img" id="close">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -267,6 +269,30 @@
                     $(element).removeClass('is-invalid');
                 },
             })
+        })
+    </script>
+
+    {{--  Add Loading Gif  --}}
+    <script type="text/javascript">
+        var button = document.getElementById('Login');
+        var buttonClose = document.getElementById('close');
+        var pleaseWait = document.querySelector(".hidden-img");
+
+        button.addEventListener("click", function(evt){
+
+            // Show the message by removing the class that hides it:
+            pleaseWait.classList.remove("hidden-img");
+            buttonClose.classList.remove("hidden-img");
+
+            setTimeout(function(){
+                pleaseWait.classList.add("hidden");
+                special.classList.remove("hidden");
+            }, 2000);
+        });
+
+        buttonClose.addEventListener("click", function (evt){
+            pleaseWait.classList.add("hidden-img");
+            buttonClose.classList.add("hidden-img");
         })
     </script>
 

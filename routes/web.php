@@ -94,13 +94,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/inactive/vendor/approve', 'inactiveVendorApprove')->name('inactive.vendor.approve');
     });
 
-    // SubCategory Route
+    // Product Route
     Route::controller(ProductController::class)->group(function (){
         Route::get('/all/product', 'allProduct')->name('all.product');
         Route::get('/add/product', 'addProduct')->name('add.product');
 //        Route::get('/edit/subcategory/{id}', 'editSubCategory')->name('edit.subcategory');
 //        Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
-//        Route::post('/store/subcategory', 'storeSubCategory')->name('subcategory.store');
+        Route::post('/store/product', 'storeProduct')->name('product.store');
 //        Route::post('/update/subcategory', 'updateSubCategory')->name('update.subcategory');
     });
 });
