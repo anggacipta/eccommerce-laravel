@@ -73,4 +73,10 @@ class SubCategoryController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    public function ajaxSubCategory($id)
+    {
+        $subcategory = SubCategory::where('category_id', $id)->orderBy('subcategory_name', 'ASC')->get();
+        return json_encode($subcategory);
+    }
+
 }
