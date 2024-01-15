@@ -98,10 +98,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(ProductController::class)->group(function (){
         Route::get('/all/product', 'allProduct')->name('all.product');
         Route::get('/add/product', 'addProduct')->name('add.product');
-//        Route::get('/edit/subcategory/{id}', 'editSubCategory')->name('edit.subcategory');
+        Route::get('/edit/product/{id}', 'editProduct')->name('edit.product');
 //        Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
         Route::post('/store/product', 'storeProduct')->name('product.store');
-//        Route::post('/update/subcategory', 'updateSubCategory')->name('update.subcategory');
+        Route::post('/update/product', 'updateProduct')->name('update.product');
     });
 });
 

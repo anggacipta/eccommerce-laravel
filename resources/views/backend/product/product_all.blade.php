@@ -18,7 +18,7 @@
             </div>
         </div>
         <!--end breadcrumb-->
-        <h6 class="mb-0 text-uppercase">DataTable Example</h6>
+        <h6 class="mb-0 text-uppercase">Product List : <span class="badge rounded-pill bg-info">{{ count($products) }}</span></h6>
         <hr/>
         <div class="card">
             <div class="card-body">
@@ -44,11 +44,35 @@
                                 <td>{{ $item->product_name }}</td>
                                 <td>{{ $item->selling_price }}</td>
                                 <td>{{ $item->product_qty }}</td>
-                                <td>{{ $item->discount_price }}</td>
-                                <td>{{ $item->status }}</td>
+
                                 <td>
-                                    <a href="{{ route('edit.category', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('delete.category', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                    @if($item->discount_price == null)
+                                        <span class="badge rounded-pill bg-info">No Discount</span>
+                                    @else
+                                        @php
+                                        $amount = $item->selling_price - $item->discount_price;
+                                        $discount = ($amount/$item->selling_price) * 100;
+                                        @endphp
+                                        <span class="badge rounded-pill bg-danger">{{ round($discount) }}%</span>
+                                    @endif
+                                </td>
+
+                                <td>
+                                    @if($item->status == 1)
+                                        <span class="badge rounded-pill bg-success">Active</span>
+                                    @else
+                                        <span class="badge rounded-pill bg-danger">Inactive</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('edit.product', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="bx bx-pencil"></i></a>
+                                    <a href="{{ route('edit.category', $item->id) }}" class="btn btn-primary" title="Details Data"><i class="lni lni-eye"></i></a>
+                                    <a href="{{ route('delete.category', $item->id) }}" class="btn btn-danger" id="delete" title="Delete Data"><i class="bx bx-trash"></i></a>
+                                    @if($item->status == 1)
+                                        <a href="{{ route('edit.category', $item->id) }}" class="btn btn-danger" title="Inactive Data"><i class="lni lni-thumbs-down"></i></a>
+                                    @else
+                                        <a href="{{ route('edit.category', $item->id) }}" class="btn btn-success" title="Active Data"><i class="lni lni-thumbs-up"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
