@@ -16,7 +16,7 @@
                         <input class="form-control" type="file" name="multi_img[]" id="multiImg" multiple="">
                         <div class="row mt-2" id="preview_img"></div>
                     </div>
-                    <button type="submit" id="Login" class="btn btn-primary px-4">Save Image</button>
+                    <button type="submit" id="Login" class="btn btn-primary px-4"> Image</button>
                 </div>
             </form>
         </div>

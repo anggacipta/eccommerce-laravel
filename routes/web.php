@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,13 +101,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/add/product', 'addProduct')->name('add.product');
         Route::get('/add/product/multi-img/{id}', 'addProductMultiImg')->name('add.product.multiimg');
         Route::get('/edit/product/{id}', 'editProduct')->name('edit.product');
-//        Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
+        Route::get('/delete/product/{id}', 'deleteProduct')->name('delete.product');
         Route::post('/store/product', 'storeProduct')->name('product.store');
         Route::post('/store/product/multi-img', 'storeProductMultiImg')->name('store.product.multiimg');
         Route::post('/update/product', 'updateProduct')->name('update.product');
         Route::post('/update/product/thumbnail', 'updateProductThumbnail')->name('update.product.thumbnail');
         Route::post('/update/product/multi-image', 'updateProductMultiImage')->name('update.product.multiimage');
         Route::get('/delete/product/multi-image/{id}', 'deleteProductMultiImage')->name('product.multiimg.delete');
+        Route::get('/product/inactive/{id}', 'productInactive')->name('product.inactive');
+        Route::get('/product/active/{id}', 'productActive')->name('product.active');
     });
 });
 
@@ -122,8 +125,8 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::post('/vendor/update/password', [VendorController::class, 'vendorUpdatePassword'])->name('vendor.update.password');
 });
 
-Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
-Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->name('vendor.login');
+Route::get('/admin/login', [AdminController::class, 'adminLogin'])->middleware(RedirectIfAuthenticated::class)->name('admin.login');
+Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->middleware(RedirectIfAuthenticated::class)->name('vendor.login');
 
 Route::get('/become/vendor', [VendorController::class, 'becomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'vendorRegister'])->name('vendor.register');

@@ -139,6 +139,26 @@ class ProductController extends Controller
         return redirect()->route('all.product')->with($notification);
     }
 
+    public function deleteProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+        $product->delete();
+
+        $images = MultiImg::where('product_id', $id)->get();
+        foreach ($images as $img) {
+            unlink($img->photo_name);
+            MultiImg::where('product_id', $id)->delete();
+        }
+
+        $notification = array(
+            'message' => 'Product deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
     public function updateProductThumbnail(Request $request)
     {
         $product_id = $request->id;
@@ -231,6 +251,30 @@ class ProductController extends Controller
 
         $notification = array(
             'message' => 'Product multi image deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function productInactive($id)
+    {
+        Product::findOrFail($id)->update(['status' => 0]);
+
+        $notification = array(
+            'message' => 'Product inactive',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function productActive($id)
+    {
+        Product::findOrFail($id)->update(['status' => 1]);
+
+        $notification = array(
+            'message' => 'Product active',
             'alert-type' => 'success'
         );
 

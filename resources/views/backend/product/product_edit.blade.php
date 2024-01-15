@@ -178,8 +178,12 @@
         </div>
 
         {{--   Update Multiple Image     --}}
-        <h6 class="mb-0 text-uppercase">Update Multiple Image</h6>
-        <a href="{{ route("add.product.multiimg", $products->id) }}" class="btn btn-success ms-auto">Add Multiple Image</a>
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Update Multi Image</div>
+            <div class="ms-auto">
+                <a href="{{ route("add.product.multiimg", $products->id) }}" class="btn btn-success">Add Multiple Image</a>
+            </div>
+        </div>
         <hr>
         <div class="card">
             <div class="card-body">
