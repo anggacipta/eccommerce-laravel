@@ -156,6 +156,7 @@
             </div>
         </div>
 
+        {{--   Update Main Thumbnail     --}}
         <h6 class="mb-0 text-uppercase">Update Image Thumbnail</h6>
         <hr>
         <div class="card">
@@ -175,7 +176,44 @@
                 </div>
             </form>
         </div>
-    </div>
+
+        {{--   Update Multiple Image     --}}
+        <h6 class="mb-0 text-uppercase">Update Multiple Image</h6>
+        <a href="{{ route("add.product.multiimg", $products->id) }}" class="btn btn-success ms-auto">Add Multiple Image</a>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <table class="table mb-0 table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">S1</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Change Image</th>
+                        <th scope="col">Update Image</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <form action="{{ route('update.product.multiimage') }}" method="post" id="myForm" enctype="multipart/form-data">
+                        @csrf
+                        @foreach($multi_img as $key => $img)
+                        <tr>
+                            <th scope="row">{{ $key+1 }}</th>
+                            <td><img src="{{ asset($img->photo_name) }}" style="width: 70px; height: 70px"></td>
+                            <td><input type="file" class="form-group" name="multi_img[{{$img->id}}]"></td>
+                            <td><button type="submit" class="btn btn-primary">Update Image</button></td>
+                            <td>
+                                <a href="{{ route('product.multiimg.delete', $img->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </form>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> {{--  End Page Content  --}}
+
 
 
 

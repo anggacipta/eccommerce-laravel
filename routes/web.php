@@ -98,11 +98,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(ProductController::class)->group(function (){
         Route::get('/all/product', 'allProduct')->name('all.product');
         Route::get('/add/product', 'addProduct')->name('add.product');
+        Route::get('/add/product/multi-img/{id}', 'addProductMultiImg')->name('add.product.multiimg');
         Route::get('/edit/product/{id}', 'editProduct')->name('edit.product');
 //        Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
         Route::post('/store/product', 'storeProduct')->name('product.store');
+        Route::post('/store/product/multi-img', 'storeProductMultiImg')->name('store.product.multiimg');
         Route::post('/update/product', 'updateProduct')->name('update.product');
         Route::post('/update/product/thumbnail', 'updateProductThumbnail')->name('update.product.thumbnail');
+        Route::post('/update/product/multi-image', 'updateProductMultiImage')->name('update.product.multiimage');
+        Route::get('/delete/product/multi-image/{id}', 'deleteProductMultiImage')->name('product.multiimg.delete');
     });
 });
 
