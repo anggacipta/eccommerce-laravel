@@ -142,7 +142,7 @@
                                         <hr>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" id="Login" class="btn btn-primary px-4">Save Product</button>
+                                                <button type="submit" id="Login" class="btn btn-primary px-4">Edit Product</button>
                                                 <img src="https://media.tenor.com/J7nXdDCdmLcAAAAi/sky-spinning.gif" height="80" width="120" class="my-3 hidden-img">
                                                 <button type="button" class="btn btn-sm btn-danger hidden-img" id="close">Close</button>
                                             </div>
@@ -155,7 +155,29 @@
                 </form>
             </div>
         </div>
+
+        <h6 class="mb-0 text-uppercase">Update Image Thumbnail</h6>
+        <hr>
+        <div class="card">
+            <form action="{{ route('update.product.thumbnail') }}" method="post" id="myForm" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="{{ $products->id }}">
+                <input type="hidden" name="old_image" value="{{ $products->product_thumnail }}">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Choose Thumbnail Image</label>
+                        <input class="form-control" type="file" name="product_thumbnail" id="formFile">
+                    </div>
+                    <div class="mb-3">
+                        <img src="{{ asset($products->product_thumbnail) }}" alt="" style="width: 100px; height: 100px;">
+                    </div>
+                    <button type="submit" id="Login" class="btn btn-primary px-4">Edit Image</button>
+                </div>
+            </form>
+        </div>
     </div>
+
+
 
     {{--  Multi Image Script  --}}
     <script>

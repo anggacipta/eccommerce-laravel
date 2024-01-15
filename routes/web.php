@@ -102,6 +102,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 //        Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
         Route::post('/store/product', 'storeProduct')->name('product.store');
         Route::post('/update/product', 'updateProduct')->name('update.product');
+        Route::post('/update/product/thumbnail', 'updateProductThumbnail')->name('update.product.thumbnail');
     });
 });
 

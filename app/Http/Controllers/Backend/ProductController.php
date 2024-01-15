@@ -137,4 +137,31 @@ class ProductController extends Controller
         return redirect()->route('all.product')->with($notification);
     }
 
+    public function updateProductThumbnail(Request $request)
+    {
+        $product_id = $request->id;
+        $old_image = $request->old_image;
+
+        $image = $request->file('product_thumbnail');
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(800, 1800)->save('upload/product/thumbnail/' . $name_gen);
+        $save_url = 'upload/product/thumbnail/' . $name_gen;
+
+        if (file_exists($old_image)) {
+            unlink($old_image);
+        }
+
+        Product::findOrFail($product_id)->update([
+            'product_thumbnail' => $save_url,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Product thumbnail updated successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.product')->with($notification);
+    }
+
 }
