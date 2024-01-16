@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -12,13 +12,13 @@ class SubCategoryController extends Controller
     public function allSubCategory()
     {
         $subcategories = SubCategory::latest()->get();
-        return view('backend.subcategory.subcategory_all', compact('subcategories'));
+        return view('backend.admin.subcategory.subcategory_all', compact('subcategories'));
     }
 
     public function addSubCategory()
     {
         $categories = Category::orderBy('category_name', 'ASC')->get();
-        return view('backend.subcategory.subcategory_add', compact('categories'));
+        return view('backend.admin.subcategory.subcategory_add', compact('categories'));
     }
 
     public function storeSubCategory(Request $request)
@@ -41,7 +41,7 @@ class SubCategoryController extends Controller
     {
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $subcategory = SubCategory::findOrFail($id);
-        return view('backend.subcategory.subcategory_edit', compact('categories', 'subcategory'));
+        return view('backend.admin.subcategory.subcategory_edit', compact('categories', 'subcategory'));
     }
 
     public function updateSubCategory(Request $request)

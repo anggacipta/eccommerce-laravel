@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -12,12 +12,12 @@ class CategoryController extends Controller
     public function allCategory()
     {
         $categories = Category::latest()->get();
-        return view('backend.category.category_all', compact('categories'));
+        return view('backend.admin.category.category_all', compact('categories'));
     }
 
     public function addCategory()
     {
-        return view('backend.category.category_add');
+        return view('backend.admin.category.category_add');
     }
 
     public function storeCategory(Request $request)
@@ -44,7 +44,7 @@ class CategoryController extends Controller
     public function editCategory($id)
     {
         $category = Category::findOrFail($id);
-        return view('backend.category.category_edit', compact('category'));
+        return view('backend.admin.category.category_edit', compact('category'));
     }
 
     public function updateCategory(Request $request)

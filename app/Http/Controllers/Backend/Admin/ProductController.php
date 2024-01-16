@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function allProduct()
     {
         $products = Product::latest()->get();
-        return view('backend.product.product_all', compact('products'));
+        return view('backend.admin.product.product_all', compact('products'));
     }
 
     public function addProduct()
@@ -26,7 +26,7 @@ class ProductController extends Controller
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
         $active_vendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
-        return view('backend.product.product_add', compact('brands', 'categories', 'active_vendor'));
+        return view('backend.admin.product.product_add', compact('brands', 'categories', 'active_vendor'));
     }
 
     public function storeProduct(Request $request)
@@ -95,7 +95,7 @@ class ProductController extends Controller
         $active_vendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
         $products = Product::findOrFail($id);
         $multi_img = MultiImg::where('product_id', $id)->get();
-        return view('backend.product.product_edit', compact('brands', 'subcategories', 'categories',
+        return view('backend.admin.product.product_edit', compact('brands', 'subcategories', 'categories',
             'active_vendor', 'products', 'multi_img'));
     }
 
@@ -189,7 +189,7 @@ class ProductController extends Controller
     public function addProductMultiImg($id)
     {
         $products = Product::findOrFail($id);
-        return view('backend.product.product_add_multi_img', compact('products'));
+        return view('backend.admin.product.product_add_multi_img', compact('products'));
     }
 
     public function storeProductMultiImg(Request $request)

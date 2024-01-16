@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
@@ -12,12 +12,12 @@ class BrandController extends Controller
     public function allBrand()
     {
         $brands = Brand::latest()->get();
-        return view('backend.brand.brand_all', compact('brands'));
+        return view('backend.admin.brand.brand_all', compact('brands'));
     }
 
     public function addBrand()
     {
-        return view('backend.brand.brand_add');
+        return view('backend.admin.brand.brand_add');
     }
 
     public function brandStore(Request $request)
@@ -44,7 +44,7 @@ class BrandController extends Controller
     public function editBrand($id)
     {
         $brand = Brand::findOrFail($id);
-        return view('backend.brand.brand_edit', compact('brand'));
+        return view('backend.admin.brand.brand_edit', compact('brand'));
     }
 
     public function updateBrand(Request $request)

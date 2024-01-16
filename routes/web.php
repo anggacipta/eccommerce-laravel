@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\VendorController;
+use App\Http\Controllers\Backend\Admin\BrandController;
+use App\Http\Controllers\Backend\Admin\CategoryController;
+use App\Http\Controllers\Backend\Admin\ProductController;
+use App\Http\Controllers\Backend\Admin\SubCategoryController;
+use App\Http\Controllers\Backend\Vendor\VendorProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Backend\BrandController;
-use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\SubCategoryController;
-use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\VendorController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +124,10 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::post('/vendor/store', [VendorController::class, 'vendorProfileStore'])->name('vendor.profile.store');
     Route::get('/vendor/change/password', [VendorController::class, 'vendorChangePassword'])->name('vendor.change.password');
     Route::post('/vendor/update/password', [VendorController::class, 'vendorUpdatePassword'])->name('vendor.update.password');
+
+    Route::controller(VendorProductController::class)->group(function (){
+        Route::get('/vendor/all/product', 'vendorAllProduct')->name('vendor.all.product');
+    });
 });
 
 Route::get('/admin/login', [AdminController::class, 'adminLogin'])->middleware(RedirectIfAuthenticated::class)->name('admin.login');
