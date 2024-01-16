@@ -14,7 +14,7 @@
                 </nav>
             </div>
             <div class="ms-auto">
-                <a href="{{ route('add.product') }}" class="btn btn-primary">Add Product</a>
+                <a href="{{ route('vendor.add.product') }}" class="btn btn-primary">Add Product</a>
             </div>
         </div>
         <!--end breadcrumb-->
@@ -65,13 +65,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('edit.product', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="bx bx-pencil"></i></a>
+                                    <a href="{{ route('vendor.edit.product', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="bx bx-pencil"></i></a>
                                     <a href="{{ route('edit.category', $item->id) }}" class="btn btn-primary" title="Details Data"><i class="lni lni-eye"></i></a>
-                                    <a href="{{ route('delete.product', $item->id) }}" class="btn btn-danger" id="delete" title="Delete Data"><i class="bx bx-trash"></i></a>
+                                    <a href="{{ route('vendor.delete.product', $item->id) }}" class="btn btn-danger" id="delete" title="Delete Data"><i class="bx bx-trash"></i></a>
                                     @if($item->status == 1)
-                                        <a href="{{ route('product.inactive', $item->id) }}" class="btn btn-danger" title="Inactive Data"><i class="lni lni-thumbs-down"></i></a>
+                                        <a href="{{ route('vendor.product.inactive', $item->id) }}" class="btn btn-danger" title="Inactive Data"><i class="lni lni-thumbs-down"></i></a>
                                     @else
-                                        <a href="{{ route('product.active', $item->id) }}" class="btn btn-success" title="Active Data"><i class="lni lni-thumbs-up"></i></a>
+                                        <a href="{{ route('vendor.product.active', $item->id) }}" class="btn btn-success" title="Active Data"><i class="lni lni-thumbs-up"></i></a>
                                     @endif
                                 </td>
                             </tr>

@@ -27,6 +27,13 @@
     {{--  Toaster  --}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
+    {{--  Input tags  --}}
+    <link href="{{ asset('adminbackend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
+
+    {{--  DataTable  --}}
+    <link href="{{ asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+
+
     <title>Vendor Dashboard</title>
 </head>
 
@@ -199,6 +206,30 @@
             break;
     }
     @endif
+</script>
+
+{{--  DataTable  --}}
+<script src="{{ asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('adminbackend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+
+{{-- Validate --}}
+<script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
+
+
+{{-- Input tags --}}
+<script src="{{ asset('adminbackend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
+
+{{-- TinyMCE --}}
+<script src="https://cdn.tiny.cloud/1/x1ooq3vtlm1r84uz36cs8z9lwirqei0uq6d6vadvx7creyfo/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#mytextarea'
+    });
 </script>
 
 </body>

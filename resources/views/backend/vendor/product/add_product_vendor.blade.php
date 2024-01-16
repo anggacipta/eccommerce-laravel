@@ -1,5 +1,5 @@
-@extends('admin.admin_dashboard')
-@section('admin')
+@extends('vendor.vendor_dashboard')
+@section('vendor')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <div class="page-content">
@@ -62,7 +62,7 @@
                                         <label for="inputProductDescription" class="form-label">Multiple Image</label>
                                         <input class="form-control" type="file" name="multi_img[]" id="multiImg" multiple="">
                                         <div class="row mt-2" id="preview_img"></div>
-{{--                                        <input id="image-uploadify" type="file" name="multi_img[]"  multiple>--}}
+                                        {{--                                        <input id="image-uploadify" type="file" name="multi_img[]"  multiple>--}}
                                     </div>
                                 </div>
                             </div>
@@ -109,15 +109,7 @@
                                                 <option></option>
                                             </select>
                                         </div>
-                                        <div class="col-12">
-                                            <label for="inputVendor" class="form-label">Select Vendor</label>
-                                            <select name="vendor_id" class="form-select" id="inputVendor">
-                                                <option>Select Vendor</option>
-                                                @foreach( $active_vendor as $vendor)
-                                                    <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+
                                         {{--   Section Offers   --}}
                                         <div class="col-12">
                                             <div class="row g-3">

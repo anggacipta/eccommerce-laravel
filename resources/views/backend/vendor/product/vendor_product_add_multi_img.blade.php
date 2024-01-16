@@ -1,5 +1,5 @@
-@extends('admin.admin_dashboard')
-@section('admin')
+@extends('vendor.vendor_dashboard')
+@section('vendor')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <div class="page-content">
@@ -7,7 +7,7 @@
         <h6 class="mb-0 text-uppercase">Add Multiple Image</h6>
         <hr>
         <div class="card">
-            <form action="{{ route('store.product.multiimg') }}" method="post" id="myForm" enctype="multipart/form-data">
+            <form action="{{ route('vendor.store.product.multiimg') }}" method="post" id="myForm" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="{{ $products->id }}">
                 <div class="card-body">
